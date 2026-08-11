@@ -14,7 +14,16 @@ class Node {
         this->right=NULL;
     }
 };
+Node* buildtree(const vector<int>& preorder,int& idx){
+    idx++;
+     if(preorder[idx]==-1) return NULL;
+    Node* root=new Node(preorder[idx]);
+    root->left=buildtree(preorder,idx);
+    root->right=buildtree(preorder,idx);
+    return root;
+}
 int main(){
-    cout<<"welcome to binary"<<endl;
+    vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
+    int idx=-1;
     return 0;
 }
