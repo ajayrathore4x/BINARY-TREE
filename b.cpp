@@ -22,8 +22,34 @@ Node* buildtree(const vector<int>& preorder,int& idx){
     root->right=buildtree(preorder,idx);
     return root;
 }
+void preOrder(Node* root){
+    if(root==NULL) return;
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+
+    return;
+}
+void inorder(Node* root){
+    if(root==NULL) return;
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+void postorder(Node* root){
+    if(root==NULL) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data<<" ";
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
+    Node* root = buildtree(preorder,idx);
+    preOrder(root);
+    cout<<"\n";
+    inorder(root);
+     cout<<"\n";
+     postorder(root);
     return 0;
 }
