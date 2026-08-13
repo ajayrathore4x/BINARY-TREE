@@ -77,6 +77,12 @@ int height(Node* root){
     int heiright=height(root->right);
      return max(heileft,heiright)+1;
 }
+int count(Node* root){
+    if(root==NULL) return 0;
+    int leftcount=count(root->left);
+    int rightcount=count(root->right);
+    return leftcount+rightcount+1;
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
@@ -90,5 +96,6 @@ int main(){
     // levelOrder(root);
 
     cout<<height(root)<<endl;
+    cout<<count(root)<<endl;
     return 0;
 }
