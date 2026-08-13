@@ -73,15 +73,27 @@ void levelOrder(Node* root){
 }
 int height(Node* root){
     if(root==NULL) return 0;
+
     int heileft=height(root->left);
     int heiright=height(root->right);
+
      return max(heileft,heiright)+1;
 }
 int count(Node* root){
     if(root==NULL) return 0;
+
     int leftcount=count(root->left);
     int rightcount=count(root->right);
+
     return leftcount+rightcount+1;
+}
+int sum(Node* root){
+    if(root==NULL) return 0;
+
+    int leftsum=sum(root->left);
+    int rightsum=sum(root->right);
+
+    return leftsum+rightsum+(root->data);
 }
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
@@ -97,5 +109,6 @@ int main(){
 
     cout<<height(root)<<endl;
     cout<<count(root)<<endl;
+    cout<<sum(root)<<endl;
     return 0;
 }
