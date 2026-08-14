@@ -104,6 +104,15 @@ bool isavailable(Node* root, int value){
     return isavailable(root->left, value) ||
            isavailable(root->right, value);
 }
+int countLeaf(Node* root) {
+    if(root == NULL)
+        return 0;
+
+    if(root->left == NULL && root->right == NULL)
+        return 1;
+
+    return countLeaf(root->left) + countLeaf(root->right);
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
@@ -116,10 +125,12 @@ int main(){
    //  cout<<"\n";
     // levelOrder(root);
 
-    cout<<height(root)<<endl;
-    cout<<count(root)<<endl;
-    cout<<sum(root)<<endl;
+    // cout<<height(root)<<endl;
+    // cout<<count(root)<<endl;
+    // cout<<sum(root)<<endl;
 
-    cout<<isavailable(root,4)<<endl;
+    // cout<<isavailable(root,4)<<endl;
+
+    cout<<countLeaf(root)<<endl;
     return 0;
 }
