@@ -95,6 +95,15 @@ int sum(Node* root){
 
     return leftsum+rightsum+(root->data);
 }
+bool isavailable(Node* root, int value){
+    if(root == NULL) return false;
+
+    if(root->data == value)
+        return true;
+
+    return isavailable(root->left, value) ||
+           isavailable(root->right, value);
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
@@ -110,5 +119,7 @@ int main(){
     cout<<height(root)<<endl;
     cout<<count(root)<<endl;
     cout<<sum(root)<<endl;
+
+    cout<<isavailable(root,4)<<endl;
     return 0;
 }
