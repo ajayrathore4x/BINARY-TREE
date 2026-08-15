@@ -113,6 +113,13 @@ int countLeaf(Node* root) {
 
     return countLeaf(root->left) + countLeaf(root->right);
 }
+bool isSameTree(Node* p, Node* q){
+    if(p==NULL||q==NULL){
+        return p==q;
+    }
+
+    return isSameTree(p->left,q->left)&&isSameTree(p->right,q->right)&&(p->data==q->data);
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
