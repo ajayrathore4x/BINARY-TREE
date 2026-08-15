@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<map>
 using namespace std;
 
 class Node {
@@ -148,6 +149,37 @@ public:
         return ans;
     }
 };
+void topView(Node* root){
+    if(root==NULL) return;
+    queue<pair<Node* ,int>>Q;
+    map<int,int>m;
+    Q.emplace(root,0);
+    while(!Q.empty()){
+        Node* curr=  Q.front().first;
+        int currHD=Q.front().second;
+
+        Q.pop();
+        
+        if(m.find(currHD)==m.end()){
+            m[currHD]=curr->data;
+        }
+
+        if(curr->left!=NULL){
+            Q.emplace(curr->left,currHD-1);
+        }
+
+        if(curr->right!=NULL){
+            Q.emplace(curr->right,currHD+1);
+        }
+    }
+    
+    for(auto it:m){
+        cout<<it.second<<" ";
+    }
+
+    return;
+
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
@@ -166,6 +198,7 @@ int main(){
 
     // cout<<isavailable(root,4)<<endl;
 
-    cout<<countLeaf(root)<<endl;
+   // cout<<countLeaf(root)<<endl;
+   topView(root);
     return 0;
 }
