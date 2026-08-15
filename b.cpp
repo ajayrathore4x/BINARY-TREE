@@ -120,6 +120,16 @@ bool isSameTree(Node* p, Node* q){
 
     return isSameTree(p->left,q->left)&&isSameTree(p->right,q->right)&&(p->data==q->data);
 }
+bool isSubtree(Node* root, Node* subRoot) {
+    if(root==NULL) return false;
+    
+    if(root->data==subRoot->data){
+        if(isSameTree(root,subRoot)){
+            return true;
+        }
+    }
+    return isSubtree(root->left,subRoot)||isSubtree(root->right,subRoot);
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
