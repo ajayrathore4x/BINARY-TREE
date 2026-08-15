@@ -121,15 +121,33 @@ bool isSameTree(Node* p, Node* q){
     return isSameTree(p->left,q->left)&&isSameTree(p->right,q->right)&&(p->data==q->data);
 }
 bool isSubtree(Node* root, Node* subRoot) {
-    if(root==NULL) return false;
-    
-    if(root->data==subRoot->data){
-        if(isSameTree(root,subRoot)){
-            return true;
-        }
+    if(root==NULL||subRoot==NULL) return root==subRoot;
+
+    if(root->data==subRoot->data&&isSameTree(root,subRoot)){
+            return true;  
     }
     return isSubtree(root->left,subRoot)||isSubtree(root->right,subRoot);
 }
+class Solution {
+public:
+    int ans = 0;
+
+    int height(Node* root) {
+        if(root == NULL) return 0;
+
+        int left = height(root->left);
+        int right = height(root->right);
+
+        ans = max(ans, left + right);
+
+        return max(left, right) + 1;
+    }
+
+    int diameterOfBinaryTree(Node* root) {
+        height(root);
+        return ans;
+    }
+};
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
