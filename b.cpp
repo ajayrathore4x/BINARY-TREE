@@ -191,7 +191,7 @@ void kthLevel(Node* root,int k){
 }
 Node* lowestCommonAncestor(Node* root, Node* p, Node* q) {
     if(root==NULL) return NULL;
-    if(root->data==p->data||root->data==q->data){
+    if(root==p||root==q){
         return root;
     }
     Node* leftLCA=lowestCommonAncestor(root->left,p,q);
@@ -206,6 +206,25 @@ Node* lowestCommonAncestor(Node* root, Node* p, Node* q) {
     else{
         return leftLCA;
     }
+}
+Node* buildtree(vector<int>& preorder,vector<int>& inorder,int preidx,int left,int right){
+
+}
+Node* buildTree(vector<int>& preorder,vector<int>& inorder){
+
+}
+int sumTree(Node* root){
+    if(root==NULL) return 0;
+
+   
+    int leftsum=sumTree(root->left);
+    int rightsum=sumTree(root->right);
+
+     if(root!=NULL){
+        root->data+=(leftsum+rightsum);
+    }
+
+    return root->data;
 }
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
