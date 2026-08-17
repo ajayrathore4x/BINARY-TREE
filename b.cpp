@@ -189,6 +189,24 @@ void kthLevel(Node* root,int k){
     kthLevel(root->left,k-1);
     kthLevel(root->right,k-1);
 }
+Node* lowestCommonAncestor(Node* root, Node* p, Node* q) {
+    if(root==NULL) return NULL;
+    if(root->data==p->data||root->data==q->data){
+        return root;
+    }
+    Node* leftLCA=lowestCommonAncestor(root->left,p,q);
+    Node* rightLCA=lowestCommonAncestor(root->right,p,q);
+
+    if(leftLCA && rightLCA){
+        return root;
+    }
+    else if(rightLCA!=NULL){
+        return rightLCA;
+    }
+    else{
+        return leftLCA;
+    }
+}
 int main(){
     vector<int>preorder={1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     int idx=-1;
